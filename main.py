@@ -1,3 +1,4 @@
+import datetime
 import time
 import requests
 
@@ -18,12 +19,16 @@ class BusArrivalAPI:
         else:
             raise Exception(f"Request failed with status code {response.status_code}")
 
-    def notify_on_arrival(self, bus_stop_code, bus_number, arrival_time):
+    def notify_on_arrival(self, bus_stop_code, bus_number, arrival_time, notification_threshold):
         while True:
             arrival_data = self.get_bus_arrival(bus_stop_code, bus_number)
             bus_arrival = arrival_data["Services"][0]["NextBus"]["EstimatedArrival"]
-            if bus_arrival == arrival_time:
-                print("Your bus is about to arrive!")
+            arrival_datetime = datetime.datetime.fromisoformat(bus_arrival)
+            current_datetime = datetime.datetime.now()
+            time_difference = arrival_datetime - current_datetime
+            minutes_until_arrival = time_difference.total_seconds() / 60
+            if minutes_until_arrival <= notification_threshold:
+                print(f"Your bus is arriving in {minutes_until_arrival:.0f} minutes!")
                 break
             time.sleep(10)
 
@@ -37,5 +42,8 @@ bus_number = "123"
 # Set the desired arrival time (in the format "YYYY-MM-DDTHH:MM:SS+08:00")
 arrival_time = "2022-12-22T12:00:00+08:00"
 
+# Set the notification threshold (in minutes)
+notification_threshold = 10
+
 # Start the notification loop
-api.notify_on_arrival(bus_stop_code, bus_number, arrival_time)
+api.notify_on_arrival(bus_stop_code, bus_number, arrival_time, notification_threshold)
