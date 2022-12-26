@@ -7,7 +7,7 @@ You can modify the script to use your own location and bus stop code, and to cus
 
 # Change logs
 ## 2022-12-26
-main.py
+### main.py
 This modified version of the notify_on_arrival method takes an additional argument: the notification threshold (in minutes). It calculates the time until the bus is expected to arrive by subtracting the current time from the estimated arrival time and converting the result to minutes. If the time until arrival is less than or equal to the notification threshold, a notification is printed to the console.
 
 # How do I integrate this script with Google nest hub
