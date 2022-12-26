@@ -5,6 +5,11 @@ You will need to sign up for an API key and replace "YOUR_API_KEY" in the code w
 
 You can modify the script to use your own location and bus stop code, and to customize the notification method (e.g. by using a third-party library to send an email or text message). You can also adjust the frequency of updates and the number of minutes before arrival to send a notification.
 
+# Change logs
+2022-12-26
+main.py
+This modified version of the notify_on_arrival method takes an additional argument: the notification threshold (in minutes). It calculates the time until the bus is expected to arrive by subtracting the current time from the estimated arrival time and converting the result to minutes. If the time until arrival is less than or equal to the notification threshold, a notification is printed to the console.
+
 # How do I integrate this script with Google nest hub
 To integrate the script with Google Nest Hub, you will need to use the Google Assistant API to create a "smart home" action. A smart home action allows you to control and interact with your home's devices and services using voice commands through Google Assistant.
 
