@@ -8,7 +8,7 @@ class BusArrivalData:
     def get_data(self):
         # Retrieve the bus arrival data from the API here
         # Set up the API request URL
-        base_url = "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2"
+        base_url = "https://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2"
         api_key = "your_api_key"
         params = {
             "BusStopCode": self.bus_stop_code,
